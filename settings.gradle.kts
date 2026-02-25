@@ -24,3 +24,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "PddTrainerPractice"
 include(":app")
+include(":core:database")
+include(":core:common")
+include(":core:model")
+include(":feature:questions")
+include(":feature:questions:api")
+include(":feature:questions:impl")
