@@ -1,6 +1,8 @@
 package ru.itis.pddtrainerpractice.feature.questions.impl.mapper
 
 import kotlinx.serialization.json.Json
+import ru.itis.pddtrainerpractice.core.database.entity.QuestionEntity
+import ru.itis.pddtrainerpractice.core.model.Question
 import javax.inject.Inject
 
 class QuestionMapper @Inject constructor() {

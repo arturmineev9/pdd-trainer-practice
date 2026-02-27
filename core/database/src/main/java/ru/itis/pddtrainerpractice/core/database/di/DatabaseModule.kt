@@ -2,6 +2,15 @@ package ru.itis.pddtrainerpractice.core.database.di
 
 import android.content.Context
 import androidx.room.Room
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import ru.itis.pddtrainerpractice.core.database.AppDatabase
+import ru.itis.pddtrainerpractice.core.database.dao.QuestionsDao
+import javax.inject.Singleton
+import kotlin.jvm.java
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -15,8 +24,7 @@ object DatabaseModule {
             AppDatabase::class.java,
             "pdd_trainer.db"
         )
-            // .createFromAsset("database/pdd.db") // <- Сюда мы добавим предзаполненную базу позже,
-            // пока база будет пустой, ее нужно будет наполнить (напишем парсер в Impl)
+            // .createFromAsset("database/pdd.db")
             .build()
     }
 

@@ -6,7 +6,7 @@ import ru.itis.pddtrainerpractice.core.database.dao.QuestionsDao
 import ru.itis.pddtrainerpractice.core.database.entity.QuestionEntity
 
 @Database(
-    entities =[QuestionEntity::class],
+    entities = [QuestionEntity::class],
     version = 1,
     exportSchema = false
 )
