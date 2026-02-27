@@ -15,8 +15,8 @@ firebasePerf = "2.0.2"
 google = "4.4.4"
 hilt = "2.56.2"
 junit = "4.13.2"
-kotlin = "2.0.21"
-ksp = "2.0.21-1.0.28"
+kotlin = "2.2.21"
+ksp = "2.2.21-2.0.4"
 lifecycle = "2.9.0"
 logging-interceptor = "4.10.0"
 material = "1.13.0"
@@ -26,7 +26,7 @@ okhttp = "4.12.0"
 orbit = "10.0.0"
 retrofit = "2.11.0"
 retrofitSerialization = "1.0.0"
-room_version = "2.6.1"
+room_version = "2.8.4"
 safeArgs = "2.9.0"
 serializationJson = "1.7.3"
 targetSdk = "36"
@@ -85,7 +85,7 @@ firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "
 firebase-performance = { id = "com.google.firebase.firebase-perf", version.ref = "firebasePerf" }
 google-services = { id = "com.google.gms.google-services", version.ref = "google" }
 hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version = "2.2.21" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 navigation-safe-args = { id = "androidx.navigation.safeargs.kotlin", version.ref = "safeArgs" }
