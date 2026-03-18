@@ -21,7 +21,7 @@ class DatabaseInitializer @Inject constructor(
 ) : RoomDatabase.Callback() {
 
     private val json = Json { ignoreUnknownKeys = true }
-    private val TAG = "DB_TEST" // Тэг для поиска в Logcat
+    private val TAG = "DB_TEST"
 
     override fun onCreate(db: SupportSQLiteDatabase) {
         super.onCreate(db)
@@ -32,8 +32,6 @@ class DatabaseInitializer @Inject constructor(
         }
     }
 
-    // Если база открывается, но не создается - onCreate не сработает.
-    // Для отладки можно временно раскомментировать onOpen, но потом уберите!
     override fun onOpen(db: SupportSQLiteDatabase) {
         super.onOpen(db)
         Log.d(TAG, "onOpen: База открыта (уже существует).")
@@ -42,7 +40,6 @@ class DatabaseInitializer @Inject constructor(
     private suspend fun prePopulateDatabase() {
         try {
             val assetManager = context.assets
-            // Проверяем папку
             val ticketFiles = assetManager.list("tickets") ?: emptyArray()
             Log.d(TAG, "Найдено файлов в папке tickets: ${ticketFiles.size}")
 
@@ -64,8 +61,6 @@ class DatabaseInitializer @Inject constructor(
                     val dtoList = json.decodeFromString<List<QuestionDto>>(jsonString)
 
                     val entities = dtoList.map { dto ->
-                        // ... ваш код маппинга (можно скопировать из предыдущего ответа) ...
-                        // Для краткости я его свернул, но он должен быть тут
                         val ticketNum = dto.ticketNumber.filter { it.isDigit() }.toIntOrNull() ?: 0
                         val questionNum = dto.title.filter { it.isDigit() }.toIntOrNull() ?: 0
                         val rawImageName = dto.image?.substringAfterLast("/")
