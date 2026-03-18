@@ -1,7 +1,7 @@
 package ru.itis.pddtrainerpractice.feature.questions.api.repository
 
 import kotlinx.coroutines.flow.Flow
-import ru.itis.pddtrainerpractice.core.model.Question
+import ru.itis.pddtrainerpractice.feature.questions.api.model.Question
 
 interface QuestionsRepository {
     fun getQuestionsByTicket(ticketNumber: Int): Flow<List<Question>>

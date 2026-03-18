@@ -3,7 +3,7 @@ package ru.itis.pddtrainerpractice.feature.questions.impl.repository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import ru.itis.pddtrainerpractice.core.database.dao.QuestionsDao
-import ru.itis.pddtrainerpractice.core.model.Question
+import ru.itis.pddtrainerpractice.feature.questions.api.model.Question
 import ru.itis.pddtrainerpractice.feature.questions.api.repository.QuestionsRepository
 import ru.itis.pddtrainerpractice.feature.questions.impl.mapper.QuestionMapper
 import javax.inject.Inject
