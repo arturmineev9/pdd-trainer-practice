@@ -16,3 +16,4 @@ data class Question(
     val isAnswered: Boolean get() = selectedOptionIndex != null
     val isAnsweredCorrectly: Boolean get() = selectedOptionIndex == correctOptionIndex
 }
+ 

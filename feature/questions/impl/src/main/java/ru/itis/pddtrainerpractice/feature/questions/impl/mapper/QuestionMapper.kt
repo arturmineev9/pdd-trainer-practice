@@ -22,7 +22,9 @@ class QuestionMapper @Inject constructor() {
             options = optionsList,
             correctOptionIndex = entity.correctOptionIndex,
             comment = entity.comment,
-            topic = entity.topic
+            topic = entity.topic,
+            isFavorite = entity.isFavorite,
+            selectedOptionIndex = entity.selectedOptionIndex
         )
     }
 }
