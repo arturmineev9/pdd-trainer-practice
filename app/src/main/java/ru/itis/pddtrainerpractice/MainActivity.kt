@@ -18,14 +18,5 @@ class MainActivity : AppCompatActivity() {
     lateinit var questionsDao: QuestionsDao
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        lifecycleScope.launch {
-            Log.d("DB_TEST", "Пытаемся пнуть базу данных...")
-            try {
-                val count = questionsDao.getCount()
-                Log.d("DB_TEST", "Количество вопросов в базе: $count")
-            } catch (e: Exception) {
-                Log.e("DB_TEST", "Ошибка при запросе к базе", e)
-            }
-        }
     }
 }
