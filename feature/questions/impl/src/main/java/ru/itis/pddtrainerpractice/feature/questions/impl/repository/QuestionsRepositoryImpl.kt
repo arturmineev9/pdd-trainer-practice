@@ -8,6 +8,7 @@ import ru.itis.pddtrainerpractice.feature.questions.api.model.TicketOverview
 import ru.itis.pddtrainerpractice.feature.questions.api.repository.QuestionsRepository
 import ru.itis.pddtrainerpractice.feature.questions.impl.mapper.QuestionMapper
 import javax.inject.Inject
+import kotlin.collections.map
 
 class QuestionsRepositoryImpl @Inject constructor(
     private val questionsDao: QuestionsDao,
@@ -26,7 +27,15 @@ class QuestionsRepositoryImpl @Inject constructor(
     }
 
     override fun getTicketsOverview(): Flow<List<TicketOverview>> {
-        TODO("Not yet implemented")
+        return questionsDao.getTicketsOverview().map { dtoList ->
+            dtoList.map { dto ->
+                TicketOverview(
+                    ticketNumber = dto.ticketNumber,
+                    answeredQuestionsCount = dto.answeredQuestionsCount,
+                    mistakesCount = dto.mistakesCount
+                )
+            }
+        }
     }
 
     override suspend fun saveUserAnswer(questionId: Int, selectedOptionIndex: Int) {
