@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import ru.itis.pddtrainerpractice.feature.questions.api.model.TicketOverview
 
 @Composable
-private fun TicketCard(
+fun TicketCard(
     ticket: TicketOverview,
     onClick: () -> Unit
 ) {

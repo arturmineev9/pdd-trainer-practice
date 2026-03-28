@@ -20,6 +20,8 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
 import ru.itis.pddtrainerpractice.feature.questions.api.model.TicketOverview
+import ru.itis.pddtrainerpractice.feature.questions.impl.presentation.testing.screen.TestingScreen
+import ru.itis.pddtrainerpractice.feature.questions.impl.presentation.tickets.ui.components.TicketsGrid
 import ru.itis.pddtrainerpractice.feature.questions.impl.presentation.tickets.viewmodel.TicketsSideEffect
 import ru.itis.pddtrainerpractice.feature.questions.impl.presentation.tickets.viewmodel.TicketsViewModel
 
@@ -37,8 +39,7 @@ class TicketsScreen : Screen {
         viewModel.collectSideEffect { sideEffect ->
             when (sideEffect) {
                 is TicketsSideEffect.NavigateToTicket -> {
-                    // TODO: Переход на экран самого тестирования
-                    // navigator.push(TestingScreen(ticketNumber = sideEffect.ticketNumber))
+                    navigator.push(TestingScreen(ticketNumber = sideEffect.ticketNumber))
                 }
             }
         }

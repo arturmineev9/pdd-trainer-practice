@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import ru.itis.pddtrainerpractice.feature.questions.api.model.TicketOverview
 
 @Composable
-pro fun TicketsGrid(
+fun TicketsGrid(
     tickets: List<TicketOverview>,
     onTicketClick: (Int) -> Unit
 ) {
