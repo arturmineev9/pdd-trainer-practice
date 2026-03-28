@@ -1,6 +1,5 @@
 package ru.itis.pddtrainerpractice.feature.questions.impl.presentation.testing.viewmodel
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.orbitmvi.orbit.Container
@@ -15,22 +14,17 @@ import javax.inject.Inject
 class TestingViewModel @Inject constructor(
     private val getTicketQuestionsUseCase: GetTicketQuestionsUseCase,
     private val saveAnswerUseCase: SaveAnswerUseCase,
-    private val toggleFavoriteUseCase: ToggleFavoriteUseCase,
-    savedStateHandle: SavedStateHandle
+    private val toggleFavoriteUseCase: ToggleFavoriteUseCase
 ) : ViewModel(), ContainerHost<TestingState, TestingSideEffect> {
 
-    private val ticketNumber: Int = checkNotNull(savedStateHandle["ticketNumber"]) {
-        "ticketNumber is required"
-    }
-
     override val container: Container<TestingState, TestingSideEffect> =
-        container(initialState = TestingState(ticketNumber = ticketNumber))
+        container(initialState = TestingState())
 
-    init {
-        loadQuestions()
-    }
+    fun loadTicket(ticketNumber: Int) = intent {
+        if (state.ticketNumber == ticketNumber && state.questions.isNotEmpty()) return@intent
 
-    private fun loadQuestions() = intent {
+        reduce { state.copy(ticketNumber = ticketNumber, isLoading = true) }
+
         getTicketQuestionsUseCase(ticketNumber).collect { questionsList ->
             reduce {
                 state.copy(

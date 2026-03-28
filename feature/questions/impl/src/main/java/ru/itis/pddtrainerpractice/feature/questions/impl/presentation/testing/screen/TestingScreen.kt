@@ -58,6 +58,10 @@ data class TestingScreen(val ticketNumber: Int) : Screen {
         val coroutineScope = rememberCoroutineScope()
         val numbersListState = rememberLazyListState()
 
+        LaunchedEffect(ticketNumber) {
+            viewModel.loadTicket(ticketNumber)
+        }
+        
         viewModel.collectSideEffect { sideEffect ->
             when (sideEffect) {
                 is TestingSideEffect.NavigateBack -> navigator.pop()
