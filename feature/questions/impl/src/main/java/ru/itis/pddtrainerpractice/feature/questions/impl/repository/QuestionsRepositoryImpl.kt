@@ -39,10 +39,10 @@ class QuestionsRepositoryImpl @Inject constructor(
     }
 
     override suspend fun saveUserAnswer(questionId: Int, selectedOptionIndex: Int) {
-        TODO("Not yet implemented")
+        questionsDao.updateAnswer(questionId, selectedOptionIndex)
     }
 
     override suspend fun toggleFavorite(questionId: Int, isFavorite: Boolean) {
-        TODO("Not yet implemented")
+        questionsDao.updateFavorite(questionId, isFavorite)
     }
 }
