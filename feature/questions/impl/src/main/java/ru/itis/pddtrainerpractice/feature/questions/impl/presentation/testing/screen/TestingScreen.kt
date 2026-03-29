@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -106,6 +107,7 @@ data class TestingScreen(val ticketNumber: Int) : Screen {
             topBar = {
                 TopAppBar(
                     title = { Text("Билет №${state.ticketNumber}") },
+                    windowInsets = WindowInsets(0, 0, 0, 0),
                     navigationIcon = {
                         IconButton(onClick = { viewModel.onBackClicked() }) {
                             Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Назад")
@@ -117,7 +119,8 @@ data class TestingScreen(val ticketNumber: Int) : Screen {
                         navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                     )
                 )
-            }
+            },
+            contentWindowInsets = WindowInsets(0.dp)
         ) { paddingValues ->
             if (state.isLoading) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -268,7 +271,7 @@ private fun QuestionContent(
                         contentDescription = "Изображение к вопросу",
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(200.dp)
+                            .height(150.dp)
                             .padding(bottom = 16.dp),
                         contentScale = ContentScale.Fit
                     )
@@ -328,7 +331,7 @@ private fun QuestionContent(
                 Button(
                     onClick = onNextClick,
                     modifier = Modifier.align(Alignment.End),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF607D8B))
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
                 ) {
                     Text("ДАЛЕЕ")
                     Spacer(modifier = Modifier.width(8.dp))
