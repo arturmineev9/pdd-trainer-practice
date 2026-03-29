@@ -2,7 +2,7 @@ package ru.itis.pddtrainerpractice.feature.questions.impl.mapper
 
 import kotlinx.serialization.json.Json
 import ru.itis.pddtrainerpractice.core.database.entity.QuestionEntity
-import ru.itis.pddtrainerpractice.core.model.Question
+import ru.itis.pddtrainerpractice.feature.questions.api.model.Question
 import javax.inject.Inject
 
 class QuestionMapper @Inject constructor() {
@@ -22,7 +22,9 @@ class QuestionMapper @Inject constructor() {
             options = optionsList,
             correctOptionIndex = entity.correctOptionIndex,
             comment = entity.comment,
-            topic = entity.topic
+            topic = entity.topic,
+            isFavorite = entity.isFavorite,
+            selectedOptionIndex = entity.selectedOptionIndex
         )
     }
 }

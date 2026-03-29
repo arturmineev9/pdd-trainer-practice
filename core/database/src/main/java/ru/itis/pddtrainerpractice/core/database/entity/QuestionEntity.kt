@@ -1,5 +1,6 @@
 package ru.itis.pddtrainerpractice.core.database.entity
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -13,5 +14,8 @@ data class QuestionEntity(
     val optionsJson: String,
     val correctOptionIndex: Int,
     val comment: String,
-    val topic: String
+    val topic: String,
+
+    @ColumnInfo(defaultValue = "0") val isFavorite: Boolean = false,
+    @ColumnInfo(defaultValue = "NULL") val selectedOptionIndex: Int? = null
 )

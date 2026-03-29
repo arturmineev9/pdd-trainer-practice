@@ -5,7 +5,15 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import ru.itis.pddtrainerpractice.feature.questions.api.repository.QuestionsRepository
+import ru.itis.pddtrainerpractice.feature.questions.api.usecase.GetTicketQuestionsUseCase
+import ru.itis.pddtrainerpractice.feature.questions.api.usecase.GetTicketsOverviewUseCase
+import ru.itis.pddtrainerpractice.feature.questions.api.usecase.SaveAnswerUseCase
+import ru.itis.pddtrainerpractice.feature.questions.api.usecase.ToggleFavoriteUseCase
 import ru.itis.pddtrainerpractice.feature.questions.impl.repository.QuestionsRepositoryImpl
+import ru.itis.pddtrainerpractice.feature.questions.impl.usecase.GetTicketQuestionsUseCaseImpl
+import ru.itis.pddtrainerpractice.feature.questions.impl.usecase.GetTicketsOverviewUseCaseImpl
+import ru.itis.pddtrainerpractice.feature.questions.impl.usecase.SaveAnswerUseCaseImpl
+import ru.itis.pddtrainerpractice.feature.questions.impl.usecase.ToggleFavoriteUseCaseImpl
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -15,4 +23,24 @@ abstract class QuestionsFeatureModule {
     abstract fun bindQuestionsRepository(
         impl: QuestionsRepositoryImpl
     ): QuestionsRepository
+
+    @Binds
+    abstract fun bindGetTicketsOverviewUseCase(
+        impl: GetTicketsOverviewUseCaseImpl
+    ): GetTicketsOverviewUseCase
+
+    @Binds
+    abstract fun bindGetTicketQuestionsUseCase(
+        impl: GetTicketQuestionsUseCaseImpl
+    ): GetTicketQuestionsUseCase
+
+    @Binds
+    abstract fun bindSaveAnswerUseCase(
+        impl: SaveAnswerUseCaseImpl
+    ): SaveAnswerUseCase
+
+    @Binds
+    abstract fun bindToggleFavoriteUseCase(
+        impl: ToggleFavoriteUseCaseImpl
+    ): ToggleFavoriteUseCase
 }
