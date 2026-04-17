@@ -9,8 +9,8 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import ru.itis.pddtrainerpractice.core.database.AppDatabase
 import ru.itis.pddtrainerpractice.core.database.dao.QuestionsDao
+import ru.itis.pddtrainerpractice.core.database.dao.StatisticsDao
 import javax.inject.Singleton
-import kotlin.jvm.java
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -33,5 +33,10 @@ object DatabaseModule {
     @Provides
     fun provideQuestionsDao(database: AppDatabase): QuestionsDao {
         return database.questionsDao()
+    }
+
+    @Provides
+    fun provideStatisticsDao(database: AppDatabase): StatisticsDao {
+        return database.statisticsDao()
     }
 }

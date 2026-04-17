@@ -18,6 +18,9 @@
             <option value="$PROJECT_DIR$/feature/questions" />
             <option value="$PROJECT_DIR$/feature/questions/api" />
             <option value="$PROJECT_DIR$/feature/questions/impl" />
+            <option value="$PROJECT_DIR$/feature/statistics" />
+            <option value="$PROJECT_DIR$/feature/statistics/api" />
+            <option value="$PROJECT_DIR$/feature/statistics/impl" />
           </set>
         </option>
       </GradleProjectSettings>

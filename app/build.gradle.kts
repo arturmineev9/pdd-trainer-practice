@@ -43,9 +43,16 @@ android {
 }
 
 dependencies {
+
+    implementation(project(":core:database"))
+
     implementation(project(":feature:questions:api"))
     implementation(project(":feature:questions:impl"))
-    implementation(project(":core:database"))
+
+    implementation(project(":feature:statistics:api"))
+    implementation(project(":feature:statistics:impl"))
+
+
 
     ksp(libs.hilt.compiler)
     implementation(libs.hilt)

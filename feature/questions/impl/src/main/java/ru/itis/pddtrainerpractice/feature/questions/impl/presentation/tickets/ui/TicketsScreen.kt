@@ -48,12 +48,14 @@ class TicketsScreen : Screen {
             topBar = {
                 TopAppBar(
                     title = { Text("Билеты ПДД") },
+                    windowInsets = WindowInsets(0, 0, 0, 0),
                     colors = TopAppBarDefaults.topAppBarColors(
                         containerColor = MaterialTheme.colorScheme.primary,
                         titleContentColor = MaterialTheme.colorScheme.onPrimary
                     )
                 )
-            }
+            },
+            contentWindowInsets = WindowInsets(0.dp)
         ) { paddingValues ->
             Box(
                 modifier = Modifier

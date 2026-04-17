@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.itis.pddtrainerpractice.feature.questions.api"
+    namespace = "ru.itis.pddtrainerpractice.feature.statistics.api"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -37,7 +37,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:model"))
-    implementation(libs.material)
+    implementation(project(":core:database"))
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
 }
