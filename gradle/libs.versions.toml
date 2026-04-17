@@ -14,6 +14,7 @@ firebaseCrashlytics = "2.9.9"
 firebasePerf = "2.0.2"
 google = "4.4.4"
 hilt = "2.56.2"
+imageLabelingCustom = "17.0.3"
 junit = "4.13.2"
 kotlin = "2.2.21"
 ksp = "2.2.21-2.0.4"
@@ -36,7 +37,8 @@ junitVersion = "1.3.0"
 espressoCore = "3.7.0"
 appcompat = "1.7.1"
 camerax = "1.3.3"
-mlkit-custom = "17.0.0"
+mlkit-custom = "17.0.2"
+tensorflow-lite = "2.16.1"
 guava = "32.1.3-android"
 
 [libraries]
@@ -72,13 +74,14 @@ firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashly
 firebase-performance = { group = "com.google.firebase", name = "firebase-perf" }
 hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+image-labeling-custom = { module = "com.google.mlkit:image-labeling-custom", version.ref = "imageLabelingCustom" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutinesTest" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serializationJson" }
 logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "logging-interceptor" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
-mlkit-object-detection-custom = { module = "com.google.mlkit:object-detection-custom", version.ref = "mlkit-custom" }
+mlkit-detection-custom = { module = "com.google.mlkit:object-detection-custom", version.ref = "mlkit-custom" }
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 orbit-compose = { group = "org.orbit-mvi", name = "orbit-compose", version.ref = "orbit" }
@@ -90,6 +93,7 @@ retrofit-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2
 room = { group = "androidx.room", name = "room-runtime", version.ref = "room_version" }
 room-ksp = { group = "androidx.room", name = "room-compiler", version.ref = "room_version" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room_version" }
+tensorflow-lite = { module = "org.tensorflow:tensorflow-lite", version.ref = "tensorflow-lite" }
 voyager-bottomSheetNavigator = { group = "cafe.adriel.voyager", name = "voyager-bottom-sheet-navigator", version.ref = "voyager" }
 voyager-hilt = { group = "cafe.adriel.voyager", name = "voyager-hilt", version.ref = "voyager" }
 voyager-navigator = { group = "cafe.adriel.voyager", name = "voyager-navigator", version.ref = "voyager" }
