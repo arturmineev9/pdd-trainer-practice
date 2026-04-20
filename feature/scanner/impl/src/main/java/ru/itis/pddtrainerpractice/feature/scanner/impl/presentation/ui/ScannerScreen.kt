@@ -92,8 +92,7 @@ private fun CameraPreview() {
                         .also {
                             it.setAnalyzer(
                                 ContextCompat.getMainExecutor(context),
-                                TrafficSignAnalyzer { label, confidence ->
-                                    // Обновляем состояние одним результатом
+                                TrafficSignAnalyzer(context) { label, confidence -> // <--- ДОБАВИЛИ context
                                     result = if (label.isNotEmpty()) {
                                         ClassificationResult(label, confidence)
                                     } else null
