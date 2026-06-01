@@ -52,7 +52,8 @@ dependencies {
     implementation(project(":feature:statistics:api"))
     implementation(project(":feature:statistics:impl"))
 
-
+    implementation(project(":feature:scanner:api"))
+    implementation(project(":feature:scanner:impl"))
 
     ksp(libs.hilt.compiler)
     implementation(libs.hilt)

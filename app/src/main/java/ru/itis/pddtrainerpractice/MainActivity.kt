@@ -22,6 +22,7 @@ import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
 import dagger.hilt.android.AndroidEntryPoint
 import ru.itis.pddtrainerpractice.tabnav.HomeTab
+import ru.itis.pddtrainerpractice.tabnav.ScannerTab
 import ru.itis.pddtrainerpractice.tabnav.StatisticsTab
 
 
@@ -46,12 +47,15 @@ fun MainScreen() {
                 NavigationBar {
                     TabNavigationItem(HomeTab)
                     TabNavigationItem(StatisticsTab)
+                    TabNavigationItem(ScannerTab)
                 }
             }
         ) { paddingValues ->
-            Box(modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+            ) {
                 CurrentTab()
             }
         }
