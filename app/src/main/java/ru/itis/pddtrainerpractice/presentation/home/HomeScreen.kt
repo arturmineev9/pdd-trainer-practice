@@ -11,6 +11,7 @@ import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import ru.itis.pddtrainerpractice.feature.guess_sign.impl.presentation.ui.GuessSignScreen
 import ru.itis.pddtrainerpractice.feature.marathon.impl.presentation.ui.MarathonScreen
 import ru.itis.pddtrainerpractice.feature.questions.impl.presentation.tickets.ui.TicketsScreen
 
@@ -56,13 +57,13 @@ class HomeScreen : Screen {
                     onClick = { navigator.push(MarathonScreen()) }
                 )
 
-                // Карточка 3: Угадай знак (Заглушка на будущее)
+                // Карточка 3: Угадай знак
                 ModeCard(
                     title = "Угадай знак",
                     description = "Игровой режим на знание знаков",
                     containerColor = MaterialTheme.colorScheme.surfaceVariant,
                     contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                    onClick = { /* В будущем: navigator.push(GuessSignScreen()) */ }
+                    onClick = { navigator.push(GuessSignScreen()) }
                 )
             }
         }
