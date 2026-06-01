@@ -46,6 +46,9 @@ dependencies {
 
     implementation(project(":core:database"))
 
+    implementation(project(":feature:marathon:api"))
+    implementation(project(":feature:marathon:impl"))
+
     implementation(project(":feature:questions:api"))
     implementation(project(":feature:questions:impl"))
 

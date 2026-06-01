@@ -45,4 +45,13 @@ class QuestionsRepositoryImpl @Inject constructor(
     override suspend fun toggleFavorite(questionId: Int, isFavorite: Boolean) {
         questionsDao.updateFavorite(questionId, isFavorite)
     }
+
+    override suspend fun getAllQuestions(): List<Question> {
+        return questionsDao.getAllQuestions().map { entity ->
+            mapper.mapToDomain(entity)
+        }
+    }
+    override suspend fun resetAllAnswers() {
+        questionsDao.resetAllAnswers()
+    }
 }

@@ -45,6 +45,8 @@ android {
 dependencies {
     implementation(project(":core:database"))
     implementation(project(":core:model"))
+    implementation(project(":core:ui"))
+
     implementation(project(":feature:questions:api"))
     implementation(libs.bundles.orbit.deps)
     implementation(libs.bundles.voyager.deps)

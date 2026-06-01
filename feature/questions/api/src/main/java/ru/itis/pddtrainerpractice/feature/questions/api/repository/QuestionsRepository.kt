@@ -10,4 +10,6 @@ interface QuestionsRepository {
     fun getTicketsOverview(): Flow<List<TicketOverview>>
     suspend fun saveUserAnswer(questionId: Int, selectedOptionIndex: Int)
     suspend fun toggleFavorite(questionId: Int, isFavorite: Boolean)
+    suspend fun getAllQuestions(): List<Question>
+    suspend fun resetAllAnswers()
 }

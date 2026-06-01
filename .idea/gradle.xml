@@ -14,7 +14,11 @@
             <option value="$PROJECT_DIR$/core/common" />
             <option value="$PROJECT_DIR$/core/database" />
             <option value="$PROJECT_DIR$/core/model" />
+            <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/marathon" />
+            <option value="$PROJECT_DIR$/feature/marathon/api" />
+            <option value="$PROJECT_DIR$/feature/marathon/impl" />
             <option value="$PROJECT_DIR$/feature/questions" />
             <option value="$PROJECT_DIR$/feature/questions/api" />
             <option value="$PROJECT_DIR$/feature/questions/impl" />

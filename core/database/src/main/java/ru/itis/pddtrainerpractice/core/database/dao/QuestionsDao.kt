@@ -37,4 +37,10 @@ interface QuestionsDao {
         ORDER BY ticketNumber ASC
     """)
     fun getTicketsOverview(): Flow<List<TicketOverviewDto>>
+
+    @Query("SELECT * FROM questions ORDER BY ticketNumber ASC, questionNumber ASC")
+    suspend fun getAllQuestions(): List<QuestionEntity>
+
+    @Query("UPDATE questions SET selectedOptionIndex = NULL")
+    suspend fun resetAllAnswers()
 }

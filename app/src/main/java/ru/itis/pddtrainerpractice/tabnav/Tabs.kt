@@ -12,6 +12,7 @@ import cafe.adriel.voyager.navigator.tab.TabOptions
 import ru.itis.pddtrainerpractice.feature.questions.impl.presentation.tickets.ui.TicketsScreen
 import ru.itis.pddtrainerpractice.feature.scanner.impl.presentation.ui.ScannerScreen
 import ru.itis.pddtrainerpractice.feature.statistics.impl.presentation.screen.StatisticsScreen
+import ru.itis.pddtrainerpractice.presentation.home.HomeScreen
 
 object HomeTab : Tab {
     override val options: TabOptions
@@ -24,7 +25,7 @@ object HomeTab : Tab {
 
     @Composable
     override fun Content() {
-        Navigator(screen = TicketsScreen())
+        Navigator(screen = HomeScreen())
     }
 }
 
