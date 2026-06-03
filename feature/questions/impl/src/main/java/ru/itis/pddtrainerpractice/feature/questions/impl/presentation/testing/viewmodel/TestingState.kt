@@ -4,6 +4,7 @@ import ru.itis.pddtrainerpractice.feature.questions.api.model.Question
 
 data class TestingState(
     val isLoading: Boolean = true,
+    val title: String = "",
     val ticketNumber: Int = 0,
     val questions: List<Question> = emptyList(),
     val currentQuestionIndex: Int = 0

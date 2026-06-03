@@ -14,6 +14,7 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import cafe.adriel.voyager.navigator.tab.CurrentTab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
 import ru.itis.pddtrainerpractice.TabNavigationItem
+import ru.itis.pddtrainerpractice.core.common.navigation.LocalRootNavigator
 import ru.itis.pddtrainerpractice.tabnav.HomeTab
 import ru.itis.pddtrainerpractice.tabnav.ScannerTab
 import ru.itis.pddtrainerpractice.tabnav.StatisticsTab

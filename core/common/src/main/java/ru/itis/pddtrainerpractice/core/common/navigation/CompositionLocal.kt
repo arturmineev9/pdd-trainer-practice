@@ -1,4 +1,4 @@
-package ru.itis.pddtrainerpractice.navigation
+package ru.itis.pddtrainerpractice.core.common.navigation
 
 import androidx.compose.runtime.staticCompositionLocalOf
 import cafe.adriel.voyager.navigator.Navigator

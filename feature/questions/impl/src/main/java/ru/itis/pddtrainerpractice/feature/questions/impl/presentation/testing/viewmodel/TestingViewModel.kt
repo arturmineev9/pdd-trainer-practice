@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.first
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.viewmodel.container
+import ru.itis.pddtrainerpractice.feature.questions.api.usecase.GetQuestionsByQueryUseCase
 import ru.itis.pddtrainerpractice.feature.questions.api.usecase.GetTicketQuestionsUseCase
 import ru.itis.pddtrainerpractice.feature.questions.api.usecase.SaveAnswerUseCase
 import ru.itis.pddtrainerpractice.feature.questions.api.usecase.ToggleFavoriteUseCase
@@ -18,7 +19,8 @@ class TestingViewModel @Inject constructor(
     private val getTicketQuestionsUseCase: GetTicketQuestionsUseCase,
     private val updateQuestionStatisticsUseCase: UpdateQuestionStatisticsUseCase,
     private val updateLeitnerProgressUseCase: UpdateLeitnerProgressUseCase,
-    private val toggleFavoriteUseCase: ToggleFavoriteUseCase
+    private val toggleFavoriteUseCase: ToggleFavoriteUseCase,
+    private val getQuestionsByQueryUseCase: GetQuestionsByQueryUseCase,
 ) : ViewModel(), ContainerHost<TestingState, TestingSideEffect> {
 
     override val container: Container<TestingState, TestingSideEffect> =
@@ -42,6 +44,17 @@ class TestingViewModel @Inject constructor(
                 questions = questionsList
             )
         }
+    }
+
+    fun loadQuestionsByQuery(query: String) = intent {
+        if (state.title == "Знак: $query" && state.questions.isNotEmpty()) return@intent
+
+        reduce { state.copy(title = "Знак: $query", isLoading = true) }
+
+        val questionsList = getQuestionsByQueryUseCase(query).first()
+        val cleanQuestions = questionsList.map { it.copy(selectedOptionIndex = null) }
+
+        reduce { state.copy(isLoading = false, questions = cleanQuestions) }
     }
 
     fun onQuestionPageChanged(newIndex: Int) = intent {

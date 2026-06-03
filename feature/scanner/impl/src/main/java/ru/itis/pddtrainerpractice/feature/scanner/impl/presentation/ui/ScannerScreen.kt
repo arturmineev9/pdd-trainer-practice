@@ -2,7 +2,6 @@ package ru.itis.pddtrainerpractice.feature.scanner.impl.presentation.ui
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
@@ -19,12 +18,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import cafe.adriel.voyager.core.screen.Screen
+import ru.itis.pddtrainerpractice.core.common.navigation.LocalRootNavigator
+import ru.itis.pddtrainerpractice.feature.questions.impl.presentation.testing.screen.TestingScreen
+
 
 class ScannerScreen : Screen {
 
@@ -68,9 +69,10 @@ data class ClassificationResult(
 @Composable
 private fun CameraPreview() {
     val context = LocalContext.current
-    val lifecycleOwner = LocalLifecycleOwner.current
+    val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
+    val rootNavigator = LocalRootNavigator.current
 
-    // Состояние теперь хранит один результат (лучший), а не список
+    // Состояние хранит лучший результат
     var result by remember { mutableStateOf<ClassificationResult?>(null) }
 
     val cameraProviderFuture = remember { ProcessCameraProvider.getInstance(context) }
@@ -92,7 +94,7 @@ private fun CameraPreview() {
                         .also {
                             it.setAnalyzer(
                                 ContextCompat.getMainExecutor(context),
-                                TrafficSignAnalyzer(context) { label, confidence -> // <--- ДОБАВИЛИ context
+                                TrafficSignAnalyzer(context) { label, confidence ->
                                     result = if (label.isNotEmpty()) {
                                         ClassificationResult(label, confidence)
                                     } else null
@@ -115,50 +117,75 @@ private fun CameraPreview() {
         )
 
         // 2. Рисуем статичный "Прицел" (Видоискатель)
-        // Он просто подсказывает пользователю, куда смотреть
         Box(
             modifier = Modifier
                 .size(240.dp)
                 .align(Alignment.Center)
                 .border(2.dp, Color.White.copy(alpha = 0.5f), RoundedCornerShape(16.dp))
         ) {
-            // Маленькие уголки для красоты
             Text(
                 "Наведите на знак",
                 color = Color.White.copy(alpha = 0.8f),
-                modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 8.dp),
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(bottom = 8.dp),
                 style = MaterialTheme.typography.labelSmall
             )
         }
 
         // 3. Плашка с результатом внизу (AR-режим подсказки)
         result?.let { res ->
-            if (res.confidence > 0.5f) { // Показываем только если нейросеть уверена
+            if (res.confidence > 0.6f) {
                 Card(
                     modifier = Modifier
                         .align(Alignment.BottomCenter)
-                        .padding(bottom = 40.dp)
-                        .fillMaxWidth(0.85f),
+                        .padding(bottom = 24.dp)
+                        .padding(horizontal = 16.dp)
+                        .fillMaxWidth(),
                     shape = RoundedCornerShape(16.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.9f))
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+                    elevation = CardDefaults.cardElevation(8.dp)
                 ) {
-                    Row(
-                        modifier = Modifier.padding(16.dp),
-                        verticalAlignment = Alignment.CenterVertically
+                    Column(
+                        modifier = Modifier.padding(16.dp)
                     ) {
-                        // Здесь можно добавить маленькую иконку знака, если они у вас есть
-                        Column {
+                        Text(
+                            text = "Распознан знак:",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
                             Text(
                                 text = res.label,
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Bold,
-                                color = Color.Black
+                                color = MaterialTheme.colorScheme.onSurface,
+                                modifier = Modifier.weight(1f)
                             )
                             Text(
-                                text = "Уверенность: ${(res.confidence * 100).toInt()}%",
+                                text = "${(res.confidence * 100).toInt()}%",
                                 style = MaterialTheme.typography.bodySmall,
-                                color = Color.DarkGray
+                                color = MaterialTheme.colorScheme.primary
                             )
+                        }
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        Button(
+                            onClick = {
+                                // Переход на экран билета, передаем название знака для поиска
+                                rootNavigator.push(TestingScreen(searchQuery = res.label))
+                            },
+                            modifier = Modifier.fillMaxWidth(),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = MaterialTheme.colorScheme.primary
+                            )
+                        ) {
+                            Text("Вопросы с этим знаком")
                         }
                     }
                 }

@@ -10,13 +10,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.navigator.LocalNavigator
-import cafe.adriel.voyager.navigator.currentOrThrow
+import ru.itis.pddtrainerpractice.core.common.navigation.LocalRootNavigator
 import ru.itis.pddtrainerpractice.feature.guess_sign.impl.presentation.ui.GuessSignScreen
 import ru.itis.pddtrainerpractice.feature.marathon.impl.presentation.ui.MarathonScreen
 import ru.itis.pddtrainerpractice.feature.questions.impl.presentation.tickets.ui.TicketsScreen
 import ru.itis.pddtrainerpractice.feature.spaced_repetition.impl.presentation.ui.SpacedRepetitionScreen
-import ru.itis.pddtrainerpractice.navigation.LocalRootNavigator
 
 class HomeScreen : Screen {
     @OptIn(ExperimentalMaterial3Api::class)

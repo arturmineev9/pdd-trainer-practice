@@ -14,4 +14,5 @@ interface QuestionsRepository {
     suspend fun resetAllAnswers()
     suspend fun getQuestionsForReview(currentTimeMillis: Long): List<Question>
     suspend fun updateLeitnerProgress(questionId: Int, currentBox: Int, nextReviewDate: Long)
+    fun getQuestionsByQuery(query: String): Flow<List<Question>>
 }

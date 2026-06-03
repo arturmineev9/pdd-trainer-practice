@@ -40,6 +40,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:common"))
+    implementation(project(":feature:questions:impl"))
     implementation(libs.bundles.orbit.deps)
     implementation(libs.bundles.voyager.deps)
     implementation(libs.hilt)

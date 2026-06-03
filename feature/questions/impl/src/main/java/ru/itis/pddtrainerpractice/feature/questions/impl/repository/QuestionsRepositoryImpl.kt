@@ -66,4 +66,10 @@ class QuestionsRepositoryImpl @Inject constructor(
     override suspend fun getQuestionsForReview(currentTimeMillis: Long): List<Question> {
         return questionsDao.getQuestionsForReview(currentTimeMillis).map { mapper.mapToDomain(it) }
     }
+
+    override fun getQuestionsByQuery(query: String): Flow<List<Question>> {
+        return questionsDao.getQuestionsByQuery(query).map { entities ->
+            entities.map { mapper.mapToDomain(it) }
+        }
+    }
 }

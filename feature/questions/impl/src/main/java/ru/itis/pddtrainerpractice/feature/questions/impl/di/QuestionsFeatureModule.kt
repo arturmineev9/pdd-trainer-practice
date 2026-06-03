@@ -5,6 +5,7 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import ru.itis.pddtrainerpractice.feature.questions.api.repository.QuestionsRepository
+import ru.itis.pddtrainerpractice.feature.questions.api.usecase.GetQuestionsByQueryUseCase
 import ru.itis.pddtrainerpractice.feature.questions.api.usecase.GetTicketQuestionsUseCase
 import ru.itis.pddtrainerpractice.feature.questions.api.usecase.GetTicketsOverviewUseCase
 import ru.itis.pddtrainerpractice.feature.questions.api.usecase.SaveAnswerUseCase
@@ -12,6 +13,7 @@ import ru.itis.pddtrainerpractice.feature.questions.api.usecase.ToggleFavoriteUs
 import ru.itis.pddtrainerpractice.feature.questions.api.usecase.UpdateLeitnerProgressUseCase
 import ru.itis.pddtrainerpractice.feature.questions.api.usecase.UpdateQuestionStatisticsUseCase
 import ru.itis.pddtrainerpractice.feature.questions.impl.repository.QuestionsRepositoryImpl
+import ru.itis.pddtrainerpractice.feature.questions.impl.usecase.GetQuestionsByQueryUseCaseImpl
 import ru.itis.pddtrainerpractice.feature.questions.impl.usecase.GetTicketQuestionsUseCaseImpl
 import ru.itis.pddtrainerpractice.feature.questions.impl.usecase.GetTicketsOverviewUseCaseImpl
 import ru.itis.pddtrainerpractice.feature.questions.impl.usecase.SaveAnswerUseCaseImpl
@@ -57,4 +59,9 @@ abstract class QuestionsFeatureModule {
     abstract fun bindUpdateQuestionStatisticsUseCase(
         impl: UpdateQuestionStatisticsUseCaseImpl
     ): UpdateQuestionStatisticsUseCase
+
+    @Binds
+    abstract fun bindGetQuestionsByQueryUseCase(
+        impl: GetQuestionsByQueryUseCaseImpl
+    ): GetQuestionsByQueryUseCase
 }

@@ -53,4 +53,11 @@ interface QuestionsDao {
 
     @Query("UPDATE questions SET isAnsweredInTicket = 1, isAnsweredCorrectlyInTicket = :isCorrect WHERE id = :questionId")
     suspend fun updateQuestionStatistics(questionId: Int, isCorrect: Boolean)
+
+    @Query("""
+        SELECT * FROM questions 
+        WHERE text LIKE '%' || :query || '%' 
+        OR comment LIKE '%' || :query || '%'
+    """)
+    fun getQuestionsByQuery(query: String): Flow<List<QuestionEntity>>
 }

@@ -75,7 +75,10 @@ import ru.itis.pddtrainerpractice.feature.questions.api.model.Question
 import ru.itis.pddtrainerpractice.feature.questions.impl.presentation.testing.viewmodel.TestingSideEffect
 import ru.itis.pddtrainerpractice.feature.questions.impl.presentation.testing.viewmodel.TestingViewModel
 
-data class TestingScreen(val ticketNumber: Int) : Screen {
+data class TestingScreen(
+    val ticketNumber: Int? = null,
+    val searchQuery: String? = null
+) : Screen {
 
     @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
     @Composable
@@ -84,12 +87,18 @@ data class TestingScreen(val ticketNumber: Int) : Screen {
         val viewModel = getViewModel<TestingViewModel>()
         val state by viewModel.collectAsState()
 
-        val pagerState = rememberPagerState(pageCount = { 20 })
+        val pagerState = rememberPagerState(
+            pageCount = { if (state.questions.isEmpty()) 1 else state.questions.size }
+        )
         val coroutineScope = rememberCoroutineScope()
         val numbersListState = rememberLazyListState()
 
-        LaunchedEffect(ticketNumber) {
-            viewModel.loadTicket(ticketNumber)
+        LaunchedEffect(ticketNumber, searchQuery) {
+            if (ticketNumber != null) {
+                viewModel.loadTicket(ticketNumber)
+            } else if (searchQuery != null) {
+                viewModel.loadQuestionsByQuery(searchQuery)
+            }
         }
 
         viewModel.collectSideEffect { sideEffect ->
@@ -107,7 +116,7 @@ data class TestingScreen(val ticketNumber: Int) : Screen {
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text("Билет №${state.ticketNumber}") },
+                    title = { Text(state.title) },
                     windowInsets = WindowInsets(0, 0, 0, 0),
                     navigationIcon = {
                         IconButton(onClick = { viewModel.onBackClicked() }) {
@@ -126,6 +135,30 @@ data class TestingScreen(val ticketNumber: Int) : Screen {
             if (state.isLoading) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator()
+                }
+            } else if (state.questions.isEmpty()) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(paddingValues),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center,
+                        modifier = Modifier.padding(32.dp)
+                    ) {
+                        Text(
+                            text = "К сожалению, мы не нашли вопросов ПДД, связанных со знаком «${searchQuery ?: "Неизвестный знак"}».",
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = Color.Gray,
+                            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                        )
+                        Spacer(modifier = Modifier.height(24.dp))
+                        Button(onClick = { viewModel.onBackClicked() }) {
+                            Text("Вернуться назад")
+                        }
+                    }
                 }
             } else {
                 Column(
