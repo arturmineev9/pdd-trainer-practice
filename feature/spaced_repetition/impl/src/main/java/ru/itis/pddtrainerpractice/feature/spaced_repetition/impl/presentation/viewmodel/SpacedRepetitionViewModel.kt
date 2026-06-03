@@ -5,7 +5,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.viewmodel.container
 import ru.itis.pddtrainerpractice.feature.spaced_repetition.api.domain.usecase.GetQuestionsForReviewUseCase
-import ru.itis.pddtrainerpractice.feature.spaced_repetition.api.domain.usecase.UpdateLeitnerProgressUseCase
+import ru.itis.pddtrainerpractice.feature.questions.api.usecase.UpdateLeitnerProgressUseCase
 import javax.inject.Inject
 
 @HiltViewModel

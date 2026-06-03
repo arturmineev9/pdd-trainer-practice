@@ -23,5 +23,9 @@ data class QuestionEntity(
     @ColumnInfo(defaultValue = "0")
     val boxNumber: Int = 0,
     @ColumnInfo(defaultValue = "0")
-    val nextReviewDate: Long = 0L
+    val nextReviewDate: Long = 0L,
+    @ColumnInfo(defaultValue = "0")
+    val isAnsweredInTicket: Boolean = false,
+    @ColumnInfo(defaultValue = "0")
+    val isAnsweredCorrectlyInTicket: Boolean = false
 )

@@ -10,7 +10,7 @@ import ru.itis.pddtrainerpractice.core.database.entity.QuestionEntity
 
 @Database(
     entities = [QuestionEntity::class],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -22,6 +22,12 @@ abstract class AppDatabase : RoomDatabase() {
             override fun migrate(database: SupportSQLiteDatabase) {
                 database.execSQL("ALTER TABLE questions ADD COLUMN boxNumber INTEGER NOT NULL DEFAULT 0")
                 database.execSQL("ALTER TABLE questions ADD COLUMN nextReviewDate INTEGER NOT NULL DEFAULT 0")
+            }
+        }
+        val MIGRATION_2_3 = object : Migration(2, 3) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE questions ADD COLUMN isAnsweredInTicket INTEGER NOT NULL DEFAULT 0")
+                database.execSQL("ALTER TABLE questions ADD COLUMN isAnsweredCorrectlyInTicket INTEGER NOT NULL DEFAULT 0")
             }
         }
     }

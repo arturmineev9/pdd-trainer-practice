@@ -148,7 +148,8 @@ data class TestingScreen(val ticketNumber: Int) : Screen {
 
                     HorizontalPager(
                         state = pagerState,
-                        modifier = Modifier.fillMaxSize()
+                        modifier = Modifier.fillMaxSize(),
+                        key = { state.questions[it].id }
                     ) { pageIndex ->
                         val question = state.questions.getOrNull(pageIndex)
                         if (question != null) {

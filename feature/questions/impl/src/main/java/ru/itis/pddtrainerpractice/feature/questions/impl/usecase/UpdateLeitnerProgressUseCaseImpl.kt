@@ -1,7 +1,7 @@
-package ru.itis.pddtrainerpractice.feature.spaced_repetition.impl.domain.usecase
+package ru.itis.pddtrainerpractice.feature.questions.impl.usecase
 
 import ru.itis.pddtrainerpractice.feature.questions.api.repository.QuestionsRepository
-import ru.itis.pddtrainerpractice.feature.spaced_repetition.api.domain.usecase.UpdateLeitnerProgressUseCase
+import ru.itis.pddtrainerpractice.feature.questions.api.usecase.UpdateLeitnerProgressUseCase
 import javax.inject.Inject
 
 class UpdateLeitnerProgressUseCaseImpl @Inject constructor(

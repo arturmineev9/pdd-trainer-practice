@@ -10,12 +10,12 @@ import ru.itis.pddtrainerpractice.core.database.dto.GlobalStatsDto
 interface StatisticsDao {
     @Query(
         """
-        SELECT 
-            COUNT(*) as totalQuestions,
-            SUM(CASE WHEN selectedOptionIndex IS NOT NULL THEN 1 ELSE 0 END) as answeredQuestions,
-            SUM(CASE WHEN selectedOptionIndex IS NOT NULL AND selectedOptionIndex = correctOptionIndex THEN 1 ELSE 0 END) as correctAnswers,
-            SUM(CASE WHEN selectedOptionIndex IS NOT NULL AND selectedOptionIndex != correctOptionIndex THEN 1 ELSE 0 END) as mistakes
-        FROM questions
+    SELECT 
+        COUNT(*) as totalQuestions,
+        SUM(CASE WHEN isAnsweredInTicket = 1 THEN 1 ELSE 0 END) as answeredQuestions,
+        SUM(CASE WHEN isAnsweredInTicket = 1 AND isAnsweredCorrectlyInTicket = 1 THEN 1 ELSE 0 END) as correctAnswers,
+        SUM(CASE WHEN isAnsweredInTicket = 1 AND isAnsweredCorrectlyInTicket = 0 THEN 1 ELSE 0 END) as mistakes
+    FROM questions
     """
     )
     fun getGlobalStats(): Flow<GlobalStatsDto>

@@ -28,14 +28,15 @@ interface QuestionsDao {
     @Query("UPDATE questions SET isFavorite = :isFavorite WHERE id = :questionId")
     suspend fun updateFavorite(questionId: Int, isFavorite: Boolean)
 
-    @Query("""
-        SELECT ticketNumber, 
-               SUM(CASE WHEN selectedOptionIndex IS NOT NULL THEN 1 ELSE 0 END) as answeredQuestionsCount,
-               SUM(CASE WHEN selectedOptionIndex IS NOT NULL AND selectedOptionIndex != correctOptionIndex THEN 1 ELSE 0 END) as mistakesCount
-        FROM questions 
-        GROUP BY ticketNumber
-        ORDER BY ticketNumber ASC
-    """)
+    @Query(
+        """
+    SELECT ticketNumber, 
+           SUM(CASE WHEN isAnsweredInTicket = 1 THEN 1 ELSE 0 END) as answeredQuestionsCount,
+           SUM(CASE WHEN isAnsweredInTicket = 1 AND isAnsweredCorrectlyInTicket = 0 THEN 1 ELSE 0 END) as mistakesCount
+    FROM questions 
+    GROUP BY ticketNumber
+"""
+    )
     fun getTicketsOverview(): Flow<List<TicketOverviewDto>>
 
     @Query("SELECT * FROM questions ORDER BY ticketNumber ASC, questionNumber ASC")
@@ -49,4 +50,7 @@ interface QuestionsDao {
 
     @Query("UPDATE questions SET boxNumber = :boxNumber, nextReviewDate = :nextReviewDate WHERE id = :questionId")
     suspend fun updateLeitnerProgress(questionId: Int, boxNumber: Int, nextReviewDate: Long)
+
+    @Query("UPDATE questions SET isAnsweredInTicket = 1, isAnsweredCorrectlyInTicket = :isCorrect WHERE id = :questionId")
+    suspend fun updateQuestionStatistics(questionId: Int, isCorrect: Boolean)
 }

@@ -9,11 +9,15 @@ import ru.itis.pddtrainerpractice.feature.questions.api.usecase.GetTicketQuestio
 import ru.itis.pddtrainerpractice.feature.questions.api.usecase.GetTicketsOverviewUseCase
 import ru.itis.pddtrainerpractice.feature.questions.api.usecase.SaveAnswerUseCase
 import ru.itis.pddtrainerpractice.feature.questions.api.usecase.ToggleFavoriteUseCase
+import ru.itis.pddtrainerpractice.feature.questions.api.usecase.UpdateLeitnerProgressUseCase
+import ru.itis.pddtrainerpractice.feature.questions.api.usecase.UpdateQuestionStatisticsUseCase
 import ru.itis.pddtrainerpractice.feature.questions.impl.repository.QuestionsRepositoryImpl
 import ru.itis.pddtrainerpractice.feature.questions.impl.usecase.GetTicketQuestionsUseCaseImpl
 import ru.itis.pddtrainerpractice.feature.questions.impl.usecase.GetTicketsOverviewUseCaseImpl
 import ru.itis.pddtrainerpractice.feature.questions.impl.usecase.SaveAnswerUseCaseImpl
 import ru.itis.pddtrainerpractice.feature.questions.impl.usecase.ToggleFavoriteUseCaseImpl
+import ru.itis.pddtrainerpractice.feature.questions.impl.usecase.UpdateLeitnerProgressUseCaseImpl
+import ru.itis.pddtrainerpractice.feature.questions.impl.usecase.UpdateQuestionStatisticsUseCaseImpl
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -43,4 +47,14 @@ abstract class QuestionsFeatureModule {
     abstract fun bindToggleFavoriteUseCase(
         impl: ToggleFavoriteUseCaseImpl
     ): ToggleFavoriteUseCase
+
+    @Binds
+    abstract fun bindUpdateLeitnerProgressUseCase(
+        impl: UpdateLeitnerProgressUseCaseImpl
+    ): UpdateLeitnerProgressUseCase
+
+    @Binds
+    abstract fun bindUpdateQuestionStatisticsUseCase(
+        impl: UpdateQuestionStatisticsUseCaseImpl
+    ): UpdateQuestionStatisticsUseCase
 }
