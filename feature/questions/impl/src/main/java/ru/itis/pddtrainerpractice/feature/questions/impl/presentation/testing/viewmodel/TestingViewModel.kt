@@ -51,31 +51,20 @@ class TestingViewModel @Inject constructor(
     }
 
     fun onAnswerSelected(questionId: Int, optionIndex: Int) = intent {
-        // Получаем текущий список вопросов из стейта
         val currentQuestions = state.questions
-
-        // Ищем индекс вопроса, на который ответил пользователь
         val index = currentQuestions.indexOfFirst { it.id == questionId }
 
-        // Защита от багов: если вопрос не найден или на него уже ответили в этой сессии — игнорируем клик
         if (index == -1 || currentQuestions[index].isAnswered) return@intent
 
         val targetQuestion = currentQuestions[index]
         val isCorrect = optionIndex == targetQuestion.correctOptionIndex
 
-        // =========================================================
-        // 1. ЛОКАЛЬНОЕ ОБНОВЛЕНИЕ (Оперативная память для UI)
-        // =========================================================
-
-        // Создаем копию вопроса с выбранным ответом
         val updatedQuestion = targetQuestion.copy(selectedOptionIndex = optionIndex)
 
-        // Создаем новый список и заменяем старый вопрос на обновленный
         val newQuestionsList = currentQuestions.toMutableList().apply {
             set(index, updatedQuestion)
         }
 
-        // Мгновенно обновляем стейт. Compose сразу перерисует карточку в зеленый/красный цвет.
         reduce {
             state.copy(questions = newQuestionsList)
         }
