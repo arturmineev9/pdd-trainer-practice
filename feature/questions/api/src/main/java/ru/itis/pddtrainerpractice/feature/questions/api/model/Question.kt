@@ -11,7 +11,9 @@ data class Question(
     val comment: String,
     val topic: String,
     val isFavorite: Boolean = false,
-    val selectedOptionIndex: Int? = null
+    val selectedOptionIndex: Int? = null,
+    val boxNumber: Int,
+    val nextReviewDate: Long
 ) {
     val isAnswered: Boolean get() = selectedOptionIndex != null
     val isAnsweredCorrectly: Boolean get() = selectedOptionIndex == correctOptionIndex

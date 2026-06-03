@@ -6,6 +6,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
@@ -14,6 +15,7 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import ru.itis.pddtrainerpractice.feature.guess_sign.impl.presentation.ui.GuessSignScreen
 import ru.itis.pddtrainerpractice.feature.marathon.impl.presentation.ui.MarathonScreen
 import ru.itis.pddtrainerpractice.feature.questions.impl.presentation.tickets.ui.TicketsScreen
+import ru.itis.pddtrainerpractice.feature.spaced_repetition.impl.presentation.ui.SpacedRepetitionScreen
 
 class HomeScreen : Screen {
     @OptIn(ExperimentalMaterial3Api::class)
@@ -64,6 +66,14 @@ class HomeScreen : Screen {
                     containerColor = MaterialTheme.colorScheme.surfaceVariant,
                     contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
                     onClick = { navigator.push(GuessSignScreen()) }
+                )
+                // Карточка 4: Умное повторение
+                ModeCard(
+                    title = "Умное повторение",
+                    description = "Интервальное повторение ошибок по системе Лейтнера",
+                    containerColor = Color(0xFFE8F5E9),
+                    contentColor = Color(0xFF2E7D32),
+                    onClick = { navigator.push(SpacedRepetitionScreen()) }
                 )
             }
         }

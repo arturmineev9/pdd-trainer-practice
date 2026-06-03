@@ -54,4 +54,16 @@ class QuestionsRepositoryImpl @Inject constructor(
     override suspend fun resetAllAnswers() {
         questionsDao.resetAllAnswers()
     }
+
+    override suspend fun updateLeitnerProgress(
+        questionId: Int,
+        currentBox: Int,
+        nextReviewDate: Long
+    ) {
+        questionsDao.updateLeitnerProgress(questionId, currentBox, nextReviewDate)
+    }
+
+    override suspend fun getQuestionsForReview(currentTimeMillis: Long): List<Question> {
+        return questionsDao.getQuestionsForReview(currentTimeMillis).map { mapper.mapToDomain(it) }
+    }
 }

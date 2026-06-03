@@ -16,6 +16,9 @@
             <option value="$PROJECT_DIR$/core/model" />
             <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/guess_sign" />
+            <option value="$PROJECT_DIR$/feature/guess_sign/api" />
+            <option value="$PROJECT_DIR$/feature/guess_sign/impl" />
             <option value="$PROJECT_DIR$/feature/marathon" />
             <option value="$PROJECT_DIR$/feature/marathon/api" />
             <option value="$PROJECT_DIR$/feature/marathon/impl" />

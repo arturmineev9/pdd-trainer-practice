@@ -12,4 +12,6 @@ interface QuestionsRepository {
     suspend fun toggleFavorite(questionId: Int, isFavorite: Boolean)
     suspend fun getAllQuestions(): List<Question>
     suspend fun resetAllAnswers()
+    suspend fun getQuestionsForReview(currentTimeMillis: Long): List<Question>
+    suspend fun updateLeitnerProgress(questionId: Int, currentBox: Int, nextReviewDate: Long)
 }

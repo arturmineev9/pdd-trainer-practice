@@ -55,6 +55,9 @@ dependencies {
     implementation(project(":feature:questions:api"))
     implementation(project(":feature:questions:impl"))
 
+    implementation(project(":feature:spaced_repetition:api"))
+    implementation(project(":feature:spaced_repetition:impl"))
+
     implementation(project(":feature:statistics:api"))
     implementation(project(":feature:statistics:impl"))
 

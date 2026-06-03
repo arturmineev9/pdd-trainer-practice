@@ -43,4 +43,10 @@ interface QuestionsDao {
 
     @Query("UPDATE questions SET selectedOptionIndex = NULL")
     suspend fun resetAllAnswers()
+
+    @Query("SELECT * FROM questions WHERE nextReviewDate <= :currentTimeMillis ORDER BY nextReviewDate ASC LIMIT 20")
+    suspend fun getQuestionsForReview(currentTimeMillis: Long): List<QuestionEntity>
+
+    @Query("UPDATE questions SET boxNumber = :boxNumber, nextReviewDate = :nextReviewDate WHERE id = :questionId")
+    suspend fun updateLeitnerProgress(questionId: Int, boxNumber: Int, nextReviewDate: Long)
 }

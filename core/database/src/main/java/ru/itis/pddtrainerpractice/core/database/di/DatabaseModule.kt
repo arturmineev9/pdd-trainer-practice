@@ -27,6 +27,7 @@ object DatabaseModule {
             "pdd_trainer.db"
         )
             .createFromAsset("database/pdd_trainer.db")
+            .addMigrations(AppDatabase.MIGRATION_1_2)
             .build()
     }
 

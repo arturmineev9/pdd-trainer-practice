@@ -24,7 +24,9 @@ class QuestionMapper @Inject constructor() {
             comment = entity.comment,
             topic = entity.topic,
             isFavorite = entity.isFavorite,
-            selectedOptionIndex = entity.selectedOptionIndex
+            selectedOptionIndex = entity.selectedOptionIndex,
+            boxNumber = entity.boxNumber,
+            nextReviewDate = entity.nextReviewDate
         )
     }
 }

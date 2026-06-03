@@ -16,6 +16,12 @@ data class QuestionEntity(
     val comment: String,
     val topic: String,
 
-    @ColumnInfo(defaultValue = "0") val isFavorite: Boolean = false,
-    @ColumnInfo(defaultValue = "NULL") val selectedOptionIndex: Int? = null
+    @ColumnInfo(defaultValue = "0")
+    val isFavorite: Boolean = false,
+    @ColumnInfo(defaultValue = "NULL")
+    val selectedOptionIndex: Int? = null,
+    @ColumnInfo(defaultValue = "0")
+    val boxNumber: Int = 0,
+    @ColumnInfo(defaultValue = "0")
+    val nextReviewDate: Long = 0L
 )
