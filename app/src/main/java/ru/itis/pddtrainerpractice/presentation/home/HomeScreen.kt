@@ -16,13 +16,13 @@ import ru.itis.pddtrainerpractice.feature.guess_sign.impl.presentation.ui.GuessS
 import ru.itis.pddtrainerpractice.feature.marathon.impl.presentation.ui.MarathonScreen
 import ru.itis.pddtrainerpractice.feature.questions.impl.presentation.tickets.ui.TicketsScreen
 import ru.itis.pddtrainerpractice.feature.spaced_repetition.impl.presentation.ui.SpacedRepetitionScreen
+import ru.itis.pddtrainerpractice.navigation.LocalRootNavigator
 
 class HomeScreen : Screen {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     override fun Content() {
-        val navigator = LocalNavigator.currentOrThrow
-
+        val rootNavigator = LocalRootNavigator.current
         Scaffold(
             topBar = {
                 TopAppBar(
@@ -47,7 +47,7 @@ class HomeScreen : Screen {
                     description = "Решать по билетам (40 билетов)",
                     containerColor = MaterialTheme.colorScheme.secondaryContainer,
                     contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
-                    onClick = { navigator.push(TicketsScreen()) }
+                    onClick = { rootNavigator.push(TicketsScreen()) }
                 )
 
                 // Карточка 2: Марафон
@@ -56,7 +56,7 @@ class HomeScreen : Screen {
                     description = "Все 800 вопросов подряд",
                     containerColor = MaterialTheme.colorScheme.tertiaryContainer,
                     contentColor = MaterialTheme.colorScheme.onTertiaryContainer,
-                    onClick = { navigator.push(MarathonScreen()) }
+                    onClick = { rootNavigator.push(MarathonScreen()) }
                 )
 
                 // Карточка 3: Угадай знак
@@ -65,7 +65,7 @@ class HomeScreen : Screen {
                     description = "Игровой режим на знание знаков",
                     containerColor = MaterialTheme.colorScheme.surfaceVariant,
                     contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                    onClick = { navigator.push(GuessSignScreen()) }
+                    onClick = { rootNavigator.push(GuessSignScreen()) }
                 )
                 // Карточка 4: Умное повторение
                 ModeCard(
@@ -73,7 +73,7 @@ class HomeScreen : Screen {
                     description = "Интервальное повторение ошибок по системе Лейтнера",
                     containerColor = Color(0xFFE8F5E9),
                     contentColor = Color(0xFF2E7D32),
-                    onClick = { navigator.push(SpacedRepetitionScreen()) }
+                    onClick = { rootNavigator.push(SpacedRepetitionScreen()) }
                 )
             }
         }
@@ -83,8 +83,8 @@ class HomeScreen : Screen {
     private fun ModeCard(
         title: String,
         description: String,
-        containerColor: androidx.compose.ui.graphics.Color,
-        contentColor: androidx.compose.ui.graphics.Color,
+        containerColor: Color,
+        contentColor: Color,
         onClick: () -> Unit
     ) {
         Card(

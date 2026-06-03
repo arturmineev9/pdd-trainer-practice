@@ -25,7 +25,7 @@ object HomeTab : Tab {
 
     @Composable
     override fun Content() {
-        Navigator(screen = HomeScreen())
+        HomeScreen().Content()
     }
 }
 
