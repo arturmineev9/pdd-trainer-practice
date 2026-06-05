@@ -117,7 +117,6 @@ data class TestingScreen(
             topBar = {
                 TopAppBar(
                     title = { Text(state.title) },
-                    windowInsets = WindowInsets(0, 0, 0, 0),
                     navigationIcon = {
                         IconButton(onClick = { viewModel.onBackClicked() }) {
                             Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Назад")

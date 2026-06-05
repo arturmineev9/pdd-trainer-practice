@@ -49,6 +49,7 @@ class StatisticsScreen : Screen {
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
+                        .background(Color(0xFFF5F5F5))
                         .padding(paddingValues)
                         .padding(16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally

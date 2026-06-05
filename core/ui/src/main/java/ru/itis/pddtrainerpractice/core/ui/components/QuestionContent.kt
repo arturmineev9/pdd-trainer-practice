@@ -54,27 +54,6 @@ fun QuestionContent(
             .verticalScroll(rememberScrollState())
             .padding(16.dp)
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = "Вопрос ${question.questionNumber}",
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Bold
-            )
-            IconButton(onClick = onFavoriteClick) {
-                Icon(
-                    imageVector = if (question.isFavorite) Icons.Filled.Star else Icons.Outlined.Star,
-                    contentDescription = null,
-                    tint = if (question.isFavorite) Color(0xFFFFC107) else Color.Gray
-                )
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
         if (question.imageName != null) {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)

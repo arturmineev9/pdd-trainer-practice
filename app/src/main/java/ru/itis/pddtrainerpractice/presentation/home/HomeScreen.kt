@@ -25,12 +25,14 @@ class HomeScreen : Screen {
             topBar = {
                 TopAppBar(
                     title = { Text("Тренажёр ПДД") },
+                    windowInsets = WindowInsets(0, 0, 0, 0),
                     colors = TopAppBarDefaults.topAppBarColors(
                         containerColor = MaterialTheme.colorScheme.primary,
                         titleContentColor = MaterialTheme.colorScheme.onPrimary
                     )
                 )
-            }
+            },
+            contentWindowInsets = WindowInsets(0.dp)
         ) { paddingValues ->
             Column(
                 modifier = Modifier

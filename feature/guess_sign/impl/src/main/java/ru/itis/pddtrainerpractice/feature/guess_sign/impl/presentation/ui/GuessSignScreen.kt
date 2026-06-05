@@ -79,6 +79,7 @@ class GuessSignScreen : Screen {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(paddingValues)
+                    .background(Color(0xFFF5F5F5))
             ) {
                 if (state.isGameOver) {
                     GameOverView(
@@ -134,10 +135,10 @@ class GuessSignScreen : Screen {
                                 val isCorrect = option == state.currentSign?.title
 
                                 val backgroundColor = when {
-                                    state.selectedOption == null -> MaterialTheme.colorScheme.surfaceVariant
+                                    state.selectedOption == null -> Color.White
                                     isCorrect -> Color(0xFF4CAF50)
                                     isSelected && !isCorrect -> Color(0xFFF44336)
-                                    else -> MaterialTheme.colorScheme.surfaceVariant
+                                    else -> Color.White
                                 }
 
                                 Card(
@@ -152,7 +153,7 @@ class GuessSignScreen : Screen {
                                     Text(
                                         text = option,
                                         modifier = Modifier.padding(16.dp),
-                                        color = if (backgroundColor != MaterialTheme.colorScheme.surfaceVariant) Color.White else Color.Black
+                                        color = if (backgroundColor != Color.White) Color.White else Color.Black
                                     )
                                 }
                             }
